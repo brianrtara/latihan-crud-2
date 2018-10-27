@@ -23,6 +23,7 @@
             <th>Nama</th>
             <th> Tanggal Lahir</th>
             <th>Alamat</th>
+            <th>diinputoleh</th>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -36,6 +37,7 @@
             <td><?php echo $data['nama'] ?></td>
             <td><?php echo $data['tgl_lahir'] ?></td>
             <td><?php echo $data['alamat'] ?></td>
+            <td><?php echo $data['nama_users'] ?></td>
             <td>
                 <a href="index.php?page=edit_siswa&id=<?php echo $data['id']?>">edit</a>
                 <a href="index.php?page=siswa&id=<?php echo $data['id']?>"onclick="return confirm('YAKIN MAU DIHAPUS?')">delete</a>

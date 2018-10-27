@@ -1,7 +1,13 @@
 <?php
 include "koneksi.php";
 
-
+if (!isset($_SESSION['user'])){
+    header ('location: login.php');
+}else{
+    if ($_SESSION['user']['tipeuser'] != "admin"){
+        header('location: login.php');
+    }
+}
 
 // script search
 $keyword ='';
@@ -21,11 +27,11 @@ $offset = ($cPage > 1) ? ($cPage * $perPage) - $perPage : 0;
 
 if (isset($_GET['keyword'])){
     $keyword = $_GET['keyword'];
-    $sqlJumlahData = "SELECT * FROM siswa WHERE nama LIKE '%$keyword%' OR Nis LIKE '%$keyword%'";
-     $sql = "SELECT * FROM siswa WHERE nama LIKE '%$keyword%' OR Nis LIKE '%$keyword%' LIMIT $offset,$perPage";
+    $sqlJumlahData = "SELECT siswa.*, users.nama AS nama_users FROM siswa INNER JOIN users ON siswa.id_user = users.id WHERE nama LIKE '%$keyword%' OR Nis LIKE '%$keyword%'";
+     $sql = "SELECT siswa.*, users.nama AS nama_users FROM siswa  INNER JOIN users ON siswa.id_user = users.id WHERE nama LIKE '%$keyword%' OR Nis LIKE '%$keyword%' LIMIT $offset,$perPage";
 }else{
-    $sqlJumlahData = "SELECT * FROM siswa ";
-    $sql = "SELECT * FROM siswa LIMIT $offset,$perPage";
+    $sqlJumlahData = "SELECT siswa.*, users.nama AS nama_users FROM siswa  INNER JOIN users ON siswa.id_user = users.id ";
+    $sql = "SELECT siswa.*, users.nama AS nama_users FROM siswa  INNER JOIN users ON siswa.id_user = users.id LIMIT $offset,$perPage";
 }
 $queryJumlahData = mysqli_query($conn,$sqlJumlahData);
 $totalData = mysqli_num_rows($queryJumlahData);

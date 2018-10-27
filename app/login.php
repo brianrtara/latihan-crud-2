@@ -3,7 +3,7 @@
     include "koneksi.php";
 
     $username = isset($_POST['username']) ? $_POST['username']: '';
-    $password= isset($_POST['password']) ? $_POST['password']: '';
+    $password= isset($_POST['password']) ? md5($_POST['password']): '';
     
     if (isset($_POST['submit'])) {
         $sql = "SELECT * FROM users WHERE username ='$username' AND password ='$password'";

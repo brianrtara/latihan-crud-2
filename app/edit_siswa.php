@@ -10,6 +10,7 @@ include "koneksi.php";
         $nama = $data['nama'];
         $tgl_lahir = $data['tgl_lahir'];
         $alamat = $data['alamat'];
+        $id_user = isset($_SESSION['user']) ? $_SESSION['user']['id']: 0;
 
         
     } else {
@@ -23,7 +24,7 @@ include "koneksi.php";
         $tgl_lahir =isset($_POST['tgl_lahir']) ? $_POST['tgl_lahir'] : null;
         $alamat =isset($_POST['alamat']) ? $_POST['alamat'] : '';
         
-        $sql = "UPDATE siswa SET Nis = '$nis',nama = '$nama',tgl_lahir = '$tgl_lahir',alamat = '$alamat' WHERE id=$id";
+        $sql = "UPDATE siswa SET Nis = '$nis',nama = '$nama',tgl_lahir = '$tgl_lahir',alamat = '$alamat',id_user= '$id_user' WHERE id=$id";
         
         $query = mysqli_query($conn,$sql);
         if ($query) {

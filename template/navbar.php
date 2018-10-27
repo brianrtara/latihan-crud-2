@@ -5,7 +5,9 @@
         <li><a href="index.php?page=about">About</a></li>
         <li><a href="index.php?page=contactme">Contact</a></li>
         <?php if(isset($_SESSION['user'])){?>
-        <li><a href="index.php?page=siswa">siswa</a></li>
+            <?php if($_SESSION['user']['tipeuser'] == "admin"){?>
+                <li><a href="index.php?page=siswa">siswa</a></li>
+            <?php }?>
         <?php }?>
         <li><a href="index.php?page=contact">contact</a></li>
     </ul>
